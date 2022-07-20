@@ -18,6 +18,7 @@ var linkParsers = map[*regexp.Regexp](func(string, *regexp.Regexp) ([]StreamData
 	regexp.MustCompile(`https:\/\/youtu\.be\/(.+)`):                                        parseYoutube,
 	regexp.MustCompile(`https:\/\/(?:www\.|m\.)?youtube\.com\/playlist\?list=(.+)`):        parseYoutubePlaylist,
 	regexp.MustCompile(`https:\/\/(?:www\.|m\.)?youtube\.com\/results\?search_query=(.+)`): parseYoutubePlaylist,
+	regexp.MustCompile(`https:\/\/(?:www\.)?soundcloud\.com\/.+\/.+`):                      parseSoundcloud,
 }
 
 func ParseURL(url string) ([]StreamData, error) {

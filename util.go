@@ -20,6 +20,14 @@ func findNode(node *html.Node, cb func(*html.Node) bool) *html.Node {
 	return findNode(node.NextSibling, cb)
 }
 
+// wrapper for unmarshalling variable types into a string
+type stringWrapper string
+
+func (w *stringWrapper) UnmarshalJSON(data []byte) (err error) {
+	*w = stringWrapper(data)
+	return nil
+}
+
 // reverse string
 func reverseStr(str string) string {
 	var res string
