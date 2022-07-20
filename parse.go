@@ -14,8 +14,10 @@ type StreamData struct {
 }
 
 var linkParsers = map[*regexp.Regexp](func(string, *regexp.Regexp) ([]StreamData, error)){
-	regexp.MustCompile(`https:\/\/(?:www\.|m\.)?youtube\.com\/watch\?v=(.+)`): parseYoutube,
-	regexp.MustCompile(`https:\/\/youtu\.be\/(.+)`):                           parseYoutube,
+	regexp.MustCompile(`https:\/\/(?:www\.|m\.)?youtube\.com\/watch\?v=(.+)`):              parseYoutube,
+	regexp.MustCompile(`https:\/\/youtu\.be\/(.+)`):                                        parseYoutube,
+	regexp.MustCompile(`https:\/\/(?:www\.|m\.)?youtube\.com\/playlist\?list=(.+)`):        parseYoutubePlaylist,
+	regexp.MustCompile(`https:\/\/(?:www\.|m\.)?youtube\.com\/results\?search_query=(.+)`): parseYoutubePlaylist,
 }
 
 func ParseURL(url string) ([]StreamData, error) {
